@@ -1,5 +1,7 @@
 # Rate Limiter
 
+**Challenge:** https://codingchallenges.fyi/challenges/challenge-rate-limiter/
+
 This directory implements rate limiter using 2 methods:
 
 1. Implement rate limiter using 3rd party such as [Flask Limiter](https://flask-limiter.readthedocs.io/en/stable/) library
