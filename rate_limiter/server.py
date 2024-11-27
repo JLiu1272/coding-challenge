@@ -38,7 +38,9 @@ def token_bucket(ip):
     # Check if a token is available
     if tokens > 0:
         tokens -= 1
-        redis_client.hmset(key, {"tokens": tokens, "last_refill": last_refill})
+        redis_client.hset(
+            key,
+            mapping={"tokens": tokens, "last_refill": last_refill})
         # Set TTL to avoid stale data
         redis_client.expire(key, MAX_TOKENS // TOKEN_RATE)
         return True  # Request is allowed
