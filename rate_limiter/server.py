@@ -1,11 +1,6 @@
 import time
 from flask import Flask, request, jsonify
 import redis
-
-"""
-Token Bucket Algorithm Implementation
-"""
-
 # Initialize Flask and Redis
 app = Flask(__name__)
 redis_client = redis.StrictRedis(
@@ -55,6 +50,9 @@ def token_bucket(ip):
 
 @app.route("/limited")
 def limited():
+    """
+    Handle requests to the /limited endpoint with rate limiting.
+    """
     ip = request.remote_addr
     if token_bucket(ip):
         return "Limited, don't overuse me!", 200
@@ -64,6 +62,9 @@ def limited():
 
 @app.route("/unlimited")
 def unlimited():
+    """
+    Handle requests to the /unlimited endpoint without rate limiting.
+    """
     return "Unlimited! Let's Go!", 200
 
 
