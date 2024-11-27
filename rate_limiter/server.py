@@ -2,6 +2,10 @@ import time
 from flask import Flask, request, jsonify
 import redis
 
+"""
+Token Bucket Algorithm Implementation
+"""
+
 # Initialize Flask and Redis
 app = Flask(__name__)
 redis_client = redis.StrictRedis(
@@ -30,10 +34,11 @@ def token_bucket(ip):
     tokens = min(MAX_TOKENS, tokens + new_tokens)
     last_refill = current_time if new_tokens > 0 else last_refill
 
-    print(f"Elaspsed time: {elapsed_time}")
-    print(f"New Tokens: {new_tokens}")
-    print(f"Tokens: {tokens}")
-    print(f"Last Refill: {last_refill}")
+    # UNCOMMENT FOR DEBUGGING
+    # print(f"Elaspsed time: {elapsed_time}")
+    # print(f"New Tokens: {new_tokens}")
+    # print(f"Tokens: {tokens}")
+    # print(f"Last Refill: {last_refill}")
 
     # Check if a token is available
     if tokens > 0:
